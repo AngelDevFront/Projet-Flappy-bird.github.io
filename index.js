@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 const img = new Image();
 img.src = "./assets/media/flappy-bird-set.png";
 
-//general settings
+//general settings paramettre généraux
 let gamePlaying = false;
 const gravity = 0.5;
 const speed = 6.2;
@@ -11,7 +11,7 @@ const size = [51, 36];
 const jump = -11.5;
 const cTenth = canvas.width / 10;
 
-// pipe settings
+// pipe settings paramèttre des tuyaux
 const pipeWidth = 78;
 const pipeGap = 270;
 const pipeLoc = () =>
@@ -38,7 +38,7 @@ let index = 0,
 const render = () => {
   index++;
 
-  // background
+  // background fond écran
   ctx.drawImage(
     img,
     0,
@@ -91,7 +91,7 @@ const render = () => {
     ctx.font = "bold 30px courier";
   }
 
-  // pipe display
+  // pipe display affichage des tuyaux
   if (gamePlaying) {
     pipes.map((pipe) => {
       pipe[0] -= speed;
@@ -107,7 +107,7 @@ const render = () => {
         pipeWidth,
         pipe[1]
       );
-      // bottom pipe
+      // bottom pipe tuyaux du bas
       ctx.drawImage(
         img,
         432 + pipeWidth,
@@ -124,13 +124,13 @@ const render = () => {
         currentScore++;
         bestScore = Math.max(bestScore, currentScore);
 
-        // remove pipe + create new one
+        // remove pipe + create new one supprimer et recréer d'autre tuyaux
         pipes = [
           ...pipes.slice(1),
           [pipes[pipes.length - 1][0] + pipeGap + pipeWidth, pipeLoc()],
         ];
       }
-      // if hit the pipe, end
+      // if hit the pipe, end si on touche le tuyaux ses fini
       if (
         [
           pipe[0] <= cTenth + size[0],
